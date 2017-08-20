@@ -1,0 +1,12 @@
+{
+  "name": "Maps Extension",
+  "version": "1",
+  "manifest_version": 2,
+  "description": "Maps Extension to help user find address",
+  "browser_action": 
+    {
+      "default_icon": "map-icon.png",
+      "default_popup": "index.html"
+    }
+}
+
