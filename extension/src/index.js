@@ -1,18 +1,33 @@
+/* Import dependencies */
+
+//--------------- react modules---------------
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom";
+import 'babel-polyfill';
+//---------------redux modules and reducers-------
+import {Provider} from 'react-redux';
+import {createStore, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk';
+import promise from 'redux-promise';
+import logger from 'redux-logger';
+import allReducers from './redux/reducers';
+
+/* ---------------Import Components----------- */
+import App from './components/App';
+
+/*---------------import style sheet------------ */
 import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
-// const bodyParser = require('body-parser')
-// const webpack = require('webpack')
-// const webpackDevMiddleware = require('webpack-dev-middleware')
-// const webpackConfig = require('./webpack.config.js')
 
-// const app = express()
+//------------------------------------------------
 
-// app.use(express.static(__dirname + '/public'))
-// app.use(webpackDevMiddleware(webpack(webpackConfig)))
-// app.use(bodyParser.urlencoded({extended: false}))
+const store = createStore(
+    allReducers,
+    applyMiddleware(thunk, promise, logger)
+);
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById('root')
+);

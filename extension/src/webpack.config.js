@@ -5,6 +5,12 @@ module.exports = {
 	},
 	devtool: 'source-maps',
 	module: {
+		loaders: [
+            {
+                test: /\.js$/,
+                loaders: ['babel'],
+                exclude: /node_modules/
+            },
 		rules: [
 			{
 				test: /\.jsx?$/,
